@@ -1,0 +1,155 @@
+\documentclass[11pt,a4paper,numbers=noenddot]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage[pdftex]{graphicx}
+\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+\usepackage{latexsym}
+\usepackage{amsmath,amssymb,amsthm}
+
+\setlength{\topmargin}{-15mm}
+\newtheorem{Satz}{Satz}[section]
+\newtheorem{Definition}[Satz]{Definition} 
+\newtheorem{Lemma}[Satz]{Lemma}		   
+\numberwithin{equation}{section} 
+
+%%%%%%extra stuff%%%%%%%%%
+\usepackage{tikz}
+\usepackage{tikzscale}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{plotmarks}
+\usetikzlibrary{matrix}
+\pgfplotsset{compat=1.5.1}
+\usepackage[list=false]{subcaption}
+\usepackage[export]{adjustbox}
+\usetikzlibrary{positioning}
+\usetikzlibrary{positioning,fit,backgrounds,arrows,shapes,automata,petri,calc,bending}
+\usepackage{tabularx}
+
+%paragraphs
+\newcommand{\properparagraph}[1]{\paragraph{#1}\mbox{}\\}
+\usepackage[parfill]{parskip}
+
+%floats
+\usepackage{float}
+
+%set margins
+\usepackage[left=2cm, right=1cm]{geometry}
+
+%use three column jerry layout
+\usepackage{paracol}
+\globalcounter{section}
+\globalcounter{subsection}
+\begingroup% compute using local registers
+  \sbox0{\Large\textbf{{Subsection1\qquad}}}%
+  \dimen0=\dimexpr \textwidth-2\columnsep-\wd0-\marginparwidth\relax
+  \xdef\columnA{\the\wd0}% save as global macros
+  \xdef\columnB{\the\dimen0}%
+\endgroup
+
+\setcolumnwidth{\columnA,\columnB,\marginparwidth}
+\definecolumnpreamble{1}{\sloppy \parindent=\bibindent \rightskip=0pt}% parameters will not reset automatically
+\definecolumnpreamble{2}{\parindent=0pt \rightskip=0pt plus 1fil}% \ragggedright
+
+%remove section numbering
+\makeatletter
+\def\@seccntformat#1{%
+	\expandafter\ifx\csname c@#1\endcsname\c@section\else
+	\csname the#1\endcsname\quad
+	\fi}
+\makeatother
+
+%use autoref
+\usepackage{hyperref}
+
+%section heading in serif
+\addtokomafont{disposition}{\rmfamily}
+
+%remove toc title
+\deftocheading{toc}{}%
+
+%set spacing to 1.5
+\usepackage[onehalfspacing]{setspace}
+
+%remove section numbers in toc
+\RedeclareSectionCommand[
+toclinefill=\TOCLineLeaderFill,
+%tocnumwidth=0pt,
+tocentrynumberformat=\gobbleentrynumber
+]{section}
+\newcommand*\gobbleentrynumber[1]{}
+
+%typeset urls
+\usepackage{url}
+
+\usepackage{lipsum}
+
+\begin{document}
+\input{titlepage.tex}
+
+\begin{paracol}{3}[\section{\underline{SECTION I - The Project Statement}}]
+	\switchcolumn[0]
+	\subsection{Subsection 1}\label{subsec:first}
+	\switchcolumn[1]
+	\lipsum[1]
+	\switchcolumn[2] {\raggedright
+		see \url{www.example.com/example}}
+	
+	\switchcolumn[1]*
+	\lipsum[2]
+	\switchcolumn[2]{\raggedright
+		see \texttt{Mayer et. al.} }
+\end{paracol}
+
+\begin{paracol}{3}[\section{\underline{SECTION II - The Executive Summary}}]
+
+\end{paracol}
+
+\newpage
+\section{\underline{SECTION III - Table of Contents}}
+\tableofcontents
+	
+\newpage
+\begin{paracol}{3}[\section{\underline{SECTION IV - The Working Papers}}]
+	
+\end{paracol}
+
+\newpage
+\begin{paracol}{3}[\section{\underline{SECTION V - Analysis Summaries}}]
+	
+\end{paracol}
+
+\newpage
+\begin{paracol}{3}[\section{\underline{SECTION VI - Resources}}]
+	
+\end{paracol}
+
+\newpage
+\section{\underline{SECTION VII - Glossary}}
+\begin{tabularx}{\textwidth}{p{3cm} l}
+	TOC & table of contents \\
+	DOF & depth of field \\
+	ROI & region of interest \\
+	EBIT & Earnings before interest and taxes
+\end{tabularx}	
+	
+\newpage
+\begin{paracol}{3}[\section{\underline{SECTION VIII - Evaluations}}]
+	
+\end{paracol}
+
+\newpage
+\begin{paracol}{3}[\section{\underline{SECTION IX - Reference List}}]
+	
+\end{paracol}
+
+\newpage
+\begin{paracol}{3}[\section{\underline{SECTION X - Other}}]
+	
+\end{paracol}
+
+
+
+\end{document}

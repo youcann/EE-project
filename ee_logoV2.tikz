@@ -1,0 +1,9 @@
+
+\begin{tikzpicture}[]
+\definecolor{kitgreen}{RGB}{0,150,130}
+
+\fill[kitgreen] (0,0) rectangle (3,3);
+\node[anchor=east, white] at (3,1) {\changefont{ptm}{b}{sc}\fontsize{20}{10}\selectfont  SJvm};
+\node[anchor=east, white] at (3,0.4) {\changefont{ptm}{b}{sc}\fontsize{10}{10}\selectfont  Engineering};
+
+\end{tikzpicture}
