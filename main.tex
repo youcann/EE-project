@@ -43,7 +43,7 @@
 \globalcounter{subsection}
 \begingroup% compute using local registers
   \sbox0{\Large\textbf{{Subsection1\qquad}}}%
-  \dimen0=\dimexpr \textwidth-2\columnsep-\wd0-\marginparwidth\relax
+  \dimen0=\dimexpr \textwidth-4\columnsep-\wd0-\marginparwidth\relax
   \xdef\columnA{\the\wd0}% save as global macros
   \xdef\columnB{\the\dimen0}%
 \endgroup
@@ -80,6 +80,13 @@ tocentrynumberformat=\gobbleentrynumber
 ]{section}
 \newcommand*\gobbleentrynumber[1]{}
 
+%my sideref
+\newcommand{\sideref}[1]{\switchcolumn[2]* {\raggedright
+		\vspace*{-1.5\baselineskip}
+		{\footnotesize \fullcite{#1}}
+	}
+	\switchcolumn[1]}
+
 %typeset urls
 \usepackage{url}
 
@@ -89,17 +96,7 @@ tocentrynumberformat=\gobbleentrynumber
 \input{titlepage.tex}
 
 \begin{paracol}{3}[\section{\underline{SECTION I - The Project Statement}}]
-	\switchcolumn[0]
-	\subsection{Subsection 1}\label{subsec:first}
-	\switchcolumn[1]
-	\lipsum[1]
-	\switchcolumn[2] {\raggedright
-		see \url{www.example.com/example}}
-	
-	\switchcolumn[1]*
-	\lipsum[2]
-	\switchcolumn[2]{\raggedright
-		see \texttt{Mayer et. al.} }
+
 \end{paracol}
 
 \begin{paracol}{3}[\section{\underline{SECTION II - The Executive Summary}}]
@@ -123,8 +120,23 @@ tocentrynumberformat=\gobbleentrynumber
 	\switchcolumn[1]
 	\switchcolumn[0]
 	\subsection{Engine Control}\label{subsec:WP_engineControl}
-	See \autocite{kiencke2005}.
-	\switchcolumn[1]
+	\subsubsection{Overview}
+	\switchcolumn[1]*
+	\vspace*{-1.5\baselineskip}
+	The engine control is a vital component of an internal combustion engine (IEC). Today the control of engines in small engines found in cars and trucks is done electrically with a so called \textit{engine control unit} (ECU).
+	
+	The ECU handles multiple control loops with each fulfilling a specific task. For example (\autocite{kiencke2005}):
+	\sideref{kiencke2005}
+	\begin{itemize}
+		\item \textbf{Lambda Control}: Controls air/fuel mixture
+		\item \textbf{Idle Speed Control}: Keeps the idle speed constant
+		\item \textbf{Knock Control}: Prevents knocking
+		\item \textbf{Cylinder Balancing}: Ensures smooth running of the engine
+	\end{itemize}
+	
+	(other resc: \autocite{Subramanian2018})
+	
+	 
 \end{paracol}
 
 \newpage
@@ -140,10 +152,8 @@ tocentrynumberformat=\gobbleentrynumber
 \newpage
 \section{\underline{SECTION VII - Glossary}}
 \begin{tabularx}{\textwidth}{p{3cm} l}
-	TOC & table of contents \\
-	DOF & depth of field \\
-	ROI & region of interest \\
-	EBIT & Earnings before interest and taxes
+	IEC & Internal Combustion Engine \\
+	ECU & Engine Control Unit \\
 \end{tabularx}	
 	
 \newpage
@@ -161,7 +171,5 @@ tocentrynumberformat=\gobbleentrynumber
 \begin{paracol}{3}[\section{\underline{SECTION X - Other}}]
 	
 \end{paracol}
-
-
 
 \end{document}
