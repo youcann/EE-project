@@ -8,11 +8,10 @@
 \usepackage{latexsym}
 \usepackage{amsmath,amssymb,amsthm}
 
-\setlength{\topmargin}{-15mm}
-\newtheorem{Satz}{Satz}[section]
-\newtheorem{Definition}[Satz]{Definition} 
-\newtheorem{Lemma}[Satz]{Lemma}		   
-\numberwithin{equation}{section} 
+%%bib stuff
+\usepackage{csquotes}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{bib.bib}
 
 %%%%%%extra stuff%%%%%%%%%
 \usepackage{tikz}
@@ -113,7 +112,19 @@ tocentrynumberformat=\gobbleentrynumber
 	
 \newpage
 \begin{paracol}{3}[\section{\underline{SECTION IV - The Working Papers}}]
-	
+	\switchcolumn[0]
+	\subsection{Syngas}\label{subsec:WP_syngas}
+	\switchcolumn[1]
+	\switchcolumn[0]
+	\subsection{Synfuel}\label{subsec:WP_synfuel}
+	\switchcolumn[1]
+	\switchcolumn[0]
+	\subsection{Engine Modifications}\label{subsec:WP_enginemod}
+	\switchcolumn[1]
+	\switchcolumn[0]
+	\subsection{Engine Control}\label{subsec:WP_engineControl}
+	See \autocite{kiencke2005}.
+	\switchcolumn[1]
 \end{paracol}
 
 \newpage
@@ -144,6 +155,7 @@ tocentrynumberformat=\gobbleentrynumber
 \begin{paracol}{3}[\section{\underline{SECTION IX - Reference List}}]
 	
 \end{paracol}
+\printbibliography
 
 \newpage
 \begin{paracol}{3}[\section{\underline{SECTION X - Other}}]
