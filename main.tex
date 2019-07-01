@@ -26,6 +26,8 @@
 \usetikzlibrary{positioning}
 \usetikzlibrary{positioning,fit,backgrounds,arrows,shapes,automata,petri,calc,bending}
 \usepackage{tabularx}
+\usepackage{xtab}
+\usepackage{pgfgantt}
 
 %paragraphs
 \newcommand{\properparagraph}[1]{\paragraph{#1}\mbox{}\\}
@@ -37,28 +39,10 @@
 %set margins
 \usepackage[left=2cm, right=1cm]{geometry}
 
-%use three column jerry layout
-\usepackage{paracol}
-\globalcounter{section}
-\globalcounter{subsection}
-\begingroup% compute using local registers
-  \sbox0{\Large\textbf{{Subsection1\qquad}}}%
-  \dimen0=\dimexpr \textwidth-4\columnsep-\wd0-\marginparwidth\relax
-  \xdef\columnA{\the\wd0}% save as global macros
-  \xdef\columnB{\the\dimen0}%
-\endgroup
-
-\setcolumnwidth{\columnA,\columnB,\marginparwidth}
-\definecolumnpreamble{1}{\sloppy \parindent=\bibindent \rightskip=0pt}% parameters will not reset automatically
-\definecolumnpreamble{2}{\parindent=0pt \rightskip=0pt plus 1fil}% \ragggedright
-
 %remove section numbering
-\makeatletter
-\def\@seccntformat#1{%
-	\expandafter\ifx\csname c@#1\endcsname\c@section\else
-	\csname the#1\endcsname\quad
-	\fi}
-\makeatother
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand*{\sectionformat}{}
+\renewcommand*{\subsectionformat}{}
 
 %use autoref
 \usepackage{hyperref}
@@ -80,13 +64,6 @@ tocentrynumberformat=\gobbleentrynumber
 ]{section}
 \newcommand*\gobbleentrynumber[1]{}
 
-%my sideref
-\newcommand{\sideref}[1]{\switchcolumn[2]* {\raggedright
-		\vspace*{-1.5\baselineskip}
-		{\footnotesize \fullcite{#1}}
-	}
-	\switchcolumn[1]}
-
 %typeset urls
 \usepackage{url}
 
@@ -95,81 +72,87 @@ tocentrynumberformat=\gobbleentrynumber
 \begin{document}
 \input{titlepage.tex}
 
-\begin{paracol}{3}[\section{\underline{SECTION I - The Project Statement}}]
-
-\end{paracol}
-
-\begin{paracol}{3}[\section{\underline{SECTION II - The Executive Summary}}]
-
-\end{paracol}
-
+\section{\underline{SECTION I - The Project Statement}}
+\section{\underline{SECTION II - The Executive Summary}}
 \newpage
 \section{\underline{SECTION III - Table of Contents}}
 \tableofcontents
-	
 \newpage
-\begin{paracol}{3}[\section{\underline{SECTION IV - The Working Papers}}]
-	\switchcolumn[0]
-	\subsection{Syngas}\label{subsec:WP_syngas}
-	\switchcolumn[1]
-	\switchcolumn[0]
-	\subsection{Synfuel}\label{subsec:WP_synfuel}
-	\switchcolumn[1]
-	\switchcolumn[0]
-	\subsection{Engine Modifications}\label{subsec:WP_enginemod}
-	\switchcolumn[1]
-	\switchcolumn[0]
-	\subsection{Engine Control}\label{subsec:WP_engineControl}
-	\subsubsection{Overview}
-	\switchcolumn[1]*
-	\vspace*{-1.5\baselineskip}
-	The engine control is a vital component of an internal combustion engine (IEC). Today the control of engines in small engines found in cars and trucks is done electrically with a so called \textit{engine control unit} (ECU).
-	
-	The ECU handles multiple control loops with each fulfilling a specific task. For example (\autocite{kiencke2005}):
-	\sideref{kiencke2005}
-	\begin{itemize}
-		\item \textbf{Lambda Control}: Controls air/fuel mixture
-		\item \textbf{Idle Speed Control}: Keeps the idle speed constant
-		\item \textbf{Knock Control}: Prevents knocking
-		\item \textbf{Cylinder Balancing}: Ensures smooth running of the engine
-	\end{itemize}
-	
-	(other resc: \autocite{Subramanian2018})
-	
-	 
-\end{paracol}
+\section{\underline{SECTION IV - The Working Papers}}
+
+\tablehead{
+	\hline
+	\textbf{HEADING} & \textbf{ANALYSIS/DISCUSSION} & \textbf{REFERENCES} \\
+	\hline
+}
+\tabletail{\hline \multicolumn{3}{|r|}{\footnotesize continued on next page} \\ \hline}
+\begin{xtabular}{|p{3cm}|p{10cm}|p{4cm}|}
+	\vspace*{-1.25\baselineskip}\subsection{Topic Title}
+	& 
+	\lipsum[1]
+	& \fullcite{Subramanian2018} \\
+	\vspace*{-1.25\baselineskip}\subsection{Findings}
+	& 
+	\lipsum[1]
+	& \fullcite{kiencke2005} \\
+	\vspace*{-1.25\baselineskip}\subsection{Problems encountered}
+	& 
+	\lipsum[1]
+	& ref1 \\
+	\vspace*{-1.25\baselineskip}\subsection{Solutions}
+	& 
+	\lipsum[1]
+	& ref1 \\
+	\vspace*{-1.25\baselineskip}\subsection{Current Developments}
+	& 
+	aa
+	& ref1 \\
+	\vspace*{-1.25\baselineskip}\subsection{Conclusion}
+	& 
+	bb
+	& ref1 \\
+	\vspace*{-1.25\baselineskip}\subsection{Personal Comments}
+	& 
+	cc
+	& ref1 \\
+	\hline
+\end{xtabular}
 
 \newpage
-\begin{paracol}{3}[\section{\underline{SECTION V - Analysis Summaries}}]
-	
-\end{paracol}
-
+\section{\underline{SECTION V - Analysis Summaries}}
 \newpage
-\begin{paracol}{3}[\section{\underline{SECTION VI - Resources}}]
-	
-\end{paracol}
-
+\section{\underline{SECTION VI - Resources}}
 \newpage
 \section{\underline{SECTION VII - Glossary}}
 \begin{tabularx}{\textwidth}{p{3cm} l}
 	IEC & Internal Combustion Engine \\
 	ECU & Engine Control Unit \\
 \end{tabularx}	
-	
 \newpage
-\begin{paracol}{3}[\section{\underline{SECTION VIII - Evaluations}}]
-	
-\end{paracol}
-
+\section{\underline{SECTION VIII - Evaluations}}
 \newpage
-\begin{paracol}{3}[\section{\underline{SECTION IX - Reference List}}]
-	
-\end{paracol}
+\section{\underline{SECTION IX - Reference List}}
 \printbibliography
-
 \newpage
-\begin{paracol}{3}[\section{\underline{SECTION X - Other}}]
+\section{\underline{SECTION X - Other}}
+
+\subsection{Project Progress}
+\begin{ganttchart}{1}{28}
+	\gantttitle{CW 26 (June)}{7} \gantttitle{CW 27 (July)}{7} \gantttitle{CW 28 (July)}{7} \gantttitle{CW 29 (July)}{7} \\
+	\gantttitlelist{24,...,30}{1} \gantttitlelist{1,...,7}{1} \gantttitlelist{8,...,14}{1} \gantttitlelist{15,...,21}{1} \\
+	\ganttgroup{Project Paper}{1}{20} \\
+	\ganttbar[bar/.append style={fill=blue}]{WP: synfuel}{1}{2} \\
+	\ganttbar[bar/.append style={fill=red}]{WP: syngas}{3}{7} \\
+	\ganttmilestone{Finalize Paper}{22} \\
 	
-\end{paracol}
+	\ganttgroup{Presentation}{14}{20} \\
+	\ganttbar[bar/.append style={fill=green}]{Task 1}{1}{2} \\
+	\ganttbar[bar/.append style={fill=yellow}]{Task 2}{3}{7} \\
+	\ganttmilestone{Finalize ppt}{22} \\
+	
+	\ganttmilestone{Project Due}{24}
+	\ganttlink{elem3}{elem8}
+	\ganttlink{elem7}{elem8}
+\end{ganttchart}
 
 \end{document}
