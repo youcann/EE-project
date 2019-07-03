@@ -1,9 +1,13 @@
-\documentclass[11pt,a4paper,numbers=noenddot]{scrartcl}
+\documentclass[12pt,a4paper,numbers=noenddot]{scrartcl}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[english]{babel}
 \usepackage[pdftex]{graphicx}
 \newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont}
+
+%use autoref
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
 
 \usepackage{latexsym}
 \usepackage{amsmath,amssymb,amsthm}
@@ -37,104 +41,333 @@
 \usepackage{float}
 
 %set margins
-\usepackage[left=2cm, right=1cm]{geometry}
+\usepackage[left=2cm, right=1.5cm]{geometry}
 
 %remove section numbering
-\renewcommand{\thesection}{\Roman{section}}
-\renewcommand*{\sectionformat}{}
-\renewcommand*{\subsectionformat}{}
-
-%use autoref
-\usepackage{hyperref}
+\renewcommand{\thesection}{SECTION~\Roman{section}}
+%\renewcommand*{\sectionformat}{}
+%\renewcommand*{\subsectionformat}{}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+\renewcommand*{\subsubsectionformat}{}
 
 %section heading in serif
 \addtokomafont{disposition}{\rmfamily}
 
-%remove toc title
-\deftocheading{toc}{}%
-
 %set spacing to 1.5
 \usepackage[onehalfspacing]{setspace}
 
-%remove section numbers in toc
-\RedeclareSectionCommand[
-toclinefill=\TOCLineLeaderFill,
-%tocnumwidth=0pt,
-tocentrynumberformat=\gobbleentrynumber
-]{section}
-\newcommand*\gobbleentrynumber[1]{}
+%more space in toc for "SECTION"
+\usepackage{tocloft}
+\addtolength{\cftsecnumwidth}{75pt}
+\addtolength{\cftsubsecnumwidth}{0pt}
+\makeatletter
+\renewcommand{\@cftmaketoctitle}{}
+\makeatother
 
-%typeset urls
-\usepackage{url}
 
 \usepackage{lipsum}
 
+%page x of y
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\pagestyle{fancy} 
+\cfoot{Page \thepage\ of \pageref{LastPage}}
+
 \begin{document}
 \input{titlepage.tex}
+\setcounter{page}{1}
 
-\section{\underline{SECTION I - The Project Statement}}
-\section{\underline{SECTION II - The Executive Summary}}
+\section{The Project Statement}
+\section{The Executive Summary}
 \newpage
-\section{\underline{SECTION III - Table of Contents}}
+\section{Table of Contents}
 \tableofcontents
 \newpage
-\section{\underline{SECTION IV - The Working Papers}}
-
+\section{The Working Papers}
+\subsection{Synfuels}
 \tablehead{
 	\hline
 	\textbf{HEADING} & \textbf{ANALYSIS/DISCUSSION} & \textbf{REFERENCES} \\
 	\hline
 }
 \tabletail{\hline \multicolumn{3}{|r|}{\footnotesize continued on next page} \\ \hline}
-\begin{xtabular}{|p{3cm}|p{10cm}|p{4cm}|}
-	\vspace*{-1.25\baselineskip}\subsection{Topic Title}
+\begin{xtabular}{|p{3.8cm}|p{8.3cm}|p{4.2cm}|}
+	\vspace*{-1.25\baselineskip}\subsubsection{Topic Title}
 	& 
-	\lipsum[1]
-	& \fullcite{Subramanian2018} \\
-	\vspace*{-1.25\baselineskip}\subsection{Findings}
+
 	& 
-	\lipsum[1]
-	& \fullcite{kiencke2005} \\
-	\vspace*{-1.25\baselineskip}\subsection{Problems encountered}
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Findings}
 	& 
-	\lipsum[1]
-	& ref1 \\
-	\vspace*{-1.25\baselineskip}\subsection{Solutions}
+
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Problems encountered}
 	& 
-	\lipsum[1]
-	& ref1 \\
-	\vspace*{-1.25\baselineskip}\subsection{Current Developments}
+
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Solutions}
 	& 
-	aa
-	& ref1 \\
-	\vspace*{-1.25\baselineskip}\subsection{Conclusion}
+
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Current Developments}
 	& 
-	bb
-	& ref1 \\
-	\vspace*{-1.25\baselineskip}\subsection{Personal Comments}
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Conclusion}
 	& 
-	cc
-	& ref1 \\
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Personal Comments}
+	& 
+	
+	&
+	\\
 	\hline
 \end{xtabular}
 
 \newpage
-\section{\underline{SECTION V - Analysis Summaries}}
+\subsection{Syngas}
+\begin{xtabular}{|p{3.8cm}|p{8.3cm}|p{4.2cm}|}
+	\vspace*{-1.25\baselineskip}\subsubsection{Topic Title}
+	& 
+	
+	& 
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Findings}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Problems encountered}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Solutions}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Current Developments}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Conclusion}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Personal Comments}
+	& 
+	
+	&
+	\\
+	\hline
+\end{xtabular}
+
 \newpage
-\section{\underline{SECTION VI - Resources}}
+\subsection{Engine Modifications}
+\begin{xtabular}{|p{3.8cm}|p{8.3cm}|p{4.2cm}|}
+	\vspace*{-1.25\baselineskip}\subsubsection{Topic Title}
+	& 
+	
+	& 
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Findings}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Problems encountered}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Solutions}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Current Developments}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Conclusion}
+	& 
+	
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Personal Comments}
+	& 
+	
+	&
+	\\
+	\hline
+\end{xtabular}
+
 \newpage
-\section{\underline{SECTION VII - Glossary}}
+\subsection{Engine Control (Marvin)}
+\begin{xtabular}{|p{3.8cm}|p{8.3cm}|p{4.2cm}|}
+	%heading
+	\vspace*{-1.25\baselineskip}
+	\subsubsection{Introduction}
+	&
+	%main
+	The engine control is a vital component of an internal combustion engine (IEC). Today the control of engines in small engines found in cars and trucks is done electrically with a so called \textit{engine control unit} (ECU).
+	
+	The ECU handles multiple control loops with each fulfilling a specific task. For example:
+	& 
+	%ref
+	\fullcite{kiencke2005}
+	\\
+	%heading
+	&
+	%main
+	\begin{itemize}
+		\item \textbf{Lambda Control}: Controls air/fuel mixture
+		\item \textbf{Idle Speed Control}: Keeps the idle speed constant
+		\item \textbf{Knock Control}: Prevents knocking
+		\item \textbf{Cylinder Balancing}: Ensures smooth running of the engine
+	\end{itemize}
+	&
+	%ref
+	\\
+	%heading
+	\vspace*{-1.25\baselineskip}
+	\subsubsection{Findings}
+	&
+	%main
+	For many years, the requirements for an ECU have been pretty much the same. The ECU just had to perform the tasks listed above reliably. Parameters of the engine with its peripherals (which form a dynamic system in sense of control engineering) were constant, i.e. they were assumed to stay at a constant value over time. 
+	&
+	%ref
+	
+	\\
+	%heading
+	Lambda Control
+	&
+	%main
+	On main ECU task is lambda control. With the AFR (air-fuel ratio) controller, the injection of fuel is controlled such that the fuel is burned completely. This helps conserving fuel and is necessary for the so called catalytic converter, which clears the exhaust gases from many pollutants.
+	
+	This process is illustrated by the following block diagram:
+	&
+	%ref
+	
+	\\
+	%heading
+
+	&
+	%main
+	{
+		\center
+		\includegraphics[width=8cm]{material/marvin/LambdaFunctionalDiagram.jpg}
+	}
+	&
+	%ref
+	\url{secure.lambdapower.co.uk}
+	\\
+	%heading
+	(Idle) speed control
+	&
+	%main
+	If the car is in neutral, that is no gear is engaged, a constant engine speed (the idle speed) is desired. This is necessary to keep the motor running and to drive auxiliary devices (air conditioning, power steering, ...) In the most cases it is sufficient to control the speed in a quite large band, i.e. in a way that the engine doesn't stall (lower boundary) but doesn't run to fast to conserve fuel and to save the environment (upper boundary).
+	
+	Constant load situations is another state which should be considered when designing a engine speed controller. Constant load occurs e.g. when driving (without accelerating) on a long flat highway or pulling a trailer up a hill with constant speed. In either case, small speed deviations are tolerable from a technical standpoint.
+	&
+	%ref
+	\fullcite{Subramanian2018}
+	\\
+	%heading
+	\vspace*{-1.25\baselineskip}
+	\subsubsection{Problems encountered}
+	&
+	%main
+	In recent years, customers begun to require higher levels of comfort when driving a car or truck. They expect a continual smooth ride regardless of the fuel used and of the usage of additional car accessories.
+	&
+	%ref
+	
+	\\
+	%heading
+	From a consumer point of view
+	&
+	%main
+	Especially modern air conditioning or infotainment systems require much electrical power. To generate the power consumed by these devices, the engine has to drive an alternator. Because these systems can be switched on or off rapidly, they introduce high frequency disturbances to the engine load which the ECU has to remedy. A sophisticated control structure is required in order to prevent high fluctuations of the engine speed which can cause noticeable depreciations of ride smoothness.
+	
+	Today fossil fuels become more expensive which causes customers to consider fuel ratings when buying a new car. But also the majority of the customers don't want to get to technical with the car. A simple gas stop should be enough.
+	&
+	%ref
+	
+	\\
+	%heading
+	From an environmental point of view
+	&
+	%main
+	In the past, when designing an ECU for an \textsc{Otto} or \textsc{Diesel} engine, the engineer mostly knew what to expect. E.g. gas refined in refineries has very similar properties around the world. Because of that, characteristic curves could be linearized around some operating point. This simplifies analysis and synthesis of control systems dramatically but is only allowed, when the deviations from the operating point are small. If these deviations are large or the operating point is not constant, these simplifications are no more valid and non linear models have to be used.
+	
+	But to acquire these models, some parameters of the fuel have to be measured (these could include the octane number in the case of gas or the cetan number in the case of diesel). Since it is expensive to measure them and not reasonable to determine them online in the car, they have to be estimated in real time.
+	
+	This step is rather challenging but vital to ensure emissions complying with the law and to achieve high fuel efficiency ratings.
+	&
+	%ref
+	\\
+	%heading
+	From the manufactures point of view
+	&
+	%main
+	For the manufacturer it is rather risky to focus on one bio fuel solution at the moment. The car market is volatile and innovations can become successful or die rather quickly. From an engineering and economical perspective, a new ECU should be easily adaptable to different fuel types and optimally completely different technologies.
+	&
+	%ref
+	
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Solutions}
+	& 
+	Ideally an ECU lineup would offer an ECU for 'liquid fuel for gas engines' which then automatically adapts the the type of fuel present in the gas tank, without the user noticing.
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Current Developments}
+	& 
+	Modern approaches like cascading control or prediction of system states with \textsc{Kalman} filtering could be useful tools when designing a controller.
+	&
+	\url{https://www.controleng.com/articles/fundamentals-of-cascade-control/}
+	\url{http://web.mit.edu/kirtley/kirtley/binlustuff/literature/control/Kalman%20filter.pdf}
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Conclusion}
+	& 
+	New ECUs should adapt more modern approaches in control design to allow the usage of new bio fuels.
+	&
+	\\
+	\vspace*{-1.25\baselineskip}\subsubsection{Personal Comments}
+	& 
+	Research engine control fundamentals specific to new (synthetic) fuels is a quite hard task. Compared to the about 100 years of automobile history, fuels other than gas or diesel are rather new areas of wide scientific interest. Furthermore the development of ECUs in hard- and software is a labour intensive progress mostly done by private companies, which leads to sparse public available information about their inner workings.
+	&
+	\url{www.bosch-mobility-solutions.com/en/products-and-services/commercial-vehicles/powertrain-systems/natural-gas/electronic-engine-control-unit/}
+	\\
+	\hline
+\end{xtabular}
+
+\newpage
+\section{Analysis Summaries}
+\newpage
+\section{Resources}
+\newpage
+\section{Glossary}
 \begin{tabularx}{\textwidth}{p{3cm} l}
 	IEC & Internal Combustion Engine \\
 	ECU & Engine Control Unit \\
 \end{tabularx}	
 \newpage
-\section{\underline{SECTION VIII - Evaluations}}
+\section{Evaluations}
 \newpage
-\section{\underline{SECTION IX - Reference List}}
+\section{Reference List}
 \printbibliography
 \newpage
-\section{\underline{SECTION X - Other}}
+\section{Other}
 
 \subsection{Project Progress}
 \begin{ganttchart}{1}{28}
